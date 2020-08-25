@@ -29,7 +29,7 @@ DEBUG = False
 
 # ALLOWED_HOSTS = []
 # 线上环境使用下面配置
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.zmrenwu.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.zmrenwu.com', '81.70.51.41']
 
 # Application definition
 
