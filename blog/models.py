@@ -87,6 +87,8 @@ class Post(models.Model):
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和
     # Category 类似。
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='作者')
+    # 新增views字段记录阅读数量
+    click_nums = models.PositiveIntegerField(default=0, editable=False)
 
     class Meta:
         verbose_name = '文章'
@@ -100,7 +102,7 @@ class Post(models.Model):
         self.modified_time = timezone.now()
         # 首先实例化一个 Markdown 类，用于渲染 body 的文本。
         # 由于摘要并不需要生成文章目录，所以去掉了目录拓展。
-        md = markdown.Markdown(extensions =[
+        md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
         ])
@@ -114,3 +116,7 @@ class Post(models.Model):
     # 记得从django.url中导入reverse函数
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
+
+    def increase_click_nums(self):
+        self.click_nums += 1
+        self.save(update_fields=['click_nums'])

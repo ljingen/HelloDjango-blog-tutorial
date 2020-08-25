@@ -20,6 +20,9 @@ def index(request):
 
 def detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    # 点击阅读量 +1
+    post.increase_click_nums()
+
     md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',  # 用于标题、表格、引用这些基本转换
         'markdown.extensions.codehilite',  # 用于语法高亮
