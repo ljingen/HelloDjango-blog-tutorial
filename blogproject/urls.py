@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'blog/', include('blog.urls')),
-    path('', include('comments.urls')),
+    path(r'', include('comments.urls')),
 
     path(r'mdeditor', include('mdeditor.urls')),
 ]
