@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 'lhn!z_^0(+u!ee6($z6l2q81!s8%i3h#%y7%khy795j0mbg2(f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = []
 # 线上环境使用下面配置
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 第三方
     'mdeditor',  # markdown后台编辑器
+    'pure_pagination',  # 第三方分页'
+
     # 自定义
     'blog.apps.BlogConfig',  # 注册blog app
     'comments.apps.CommentsConfig',  # 注册comments app
@@ -137,6 +139,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')  # uploads必须存在，且在项目目录下
 MEDIA_URL = '/media/'  # 你上传的文件和图片会默认存在/uploads/editor下
+
+# django-pure-pagination 分页设置
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 4,  # 分页条当前页前后应该显示的总页数（两边均匀分布，因此要设置为偶数），
+    'MARGIN_PAGES_DISPLAYED': 2,  # 分页条开头和结尾显示的页数
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,  # 当请求了不存在页，显示第一页
+}
 
 # django-mdeditor编辑器配置  https://github.com/pylixm/django-mdeditor
 MDEDITOR_CONFIGS = {

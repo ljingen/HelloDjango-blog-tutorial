@@ -5,7 +5,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, ListView, DetailView
+
 from markdown.extensions.toc import TocExtension, slugify
+from pure_pagination import PaginationMixin
 
 from .models import Post, Category, Tag
 
@@ -67,11 +69,13 @@ def tag(request, pk):
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
 
-class IndexView(ListView):
+class IndexView(PaginationMixin, ListView):
     """首页展示所有的博客文章"""
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
+    # 指定 paginate_by 属性后开启分页功能，其值代表每一页包含多少篇文章
+    paginate_by = 20
 
 
 class CategoryView(ListView):
