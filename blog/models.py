@@ -4,9 +4,9 @@ import markdown
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils.html import strip_tags
-
+from users.models import User
 from mdeditor.fields import MDTextField
 
 
@@ -55,17 +55,15 @@ class Post(models.Model):
     """
     文章的数据库表稍微复杂一些,主要是设计的字段较多
     """
-    # 文章标题
     title = models.CharField('标题', max_length=70)
     body = MDTextField('正文')  # MDTextField   markdown 字段(将之前的models.TextField() 改成 MDTextField)
-
-    created_time = models.DateTimeField('创建时间', default=timezone.now)
-    modified_time = models.DateTimeField('修改时间', default=timezone.now)
     excerpt = models.CharField('摘要', max_length=200, blank=True)
     # https://docs.djangoproject.com/en/2.2/topics/db/models/#relationships
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='分类')
     tags = models.ManyToManyField(Tag, verbose_name='标签', blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='作者')
+    created_time = models.DateTimeField('创建时间', default=timezone.now)
+    modified_time = models.DateTimeField('修改时间', default=timezone.now)
     # 新增views字段记录阅读数量
     click_nums = models.PositiveIntegerField(default=0, editable=False)
 

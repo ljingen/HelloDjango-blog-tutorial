@@ -18,8 +18,8 @@ if __name__ == '__main__':
     django.setup()
 
     from blog.models import Post, Tag, Category
-    from comments.models import Comment
-    from django.contrib.auth.models import User
+    from apps.comments.models import Comment
+    from apps.users.models import User
 
     print('++++++++clean database++++++++')
     Post.objects.all().delete()
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     User.objects.all().delete()
 
     print('++++++++create a blog user++++++++')
-    user = User.objects.create_superuser('admin', 'admin@hellogithub.com', 'admin')
+    user = User.objects.create_superuser('admin', 'admin@admin.com', 'admin')
 
     category_list = ['Python学习笔记', '开源项目', '工具资源', '程序员生活感悟', 'test category']
     tag_list = ['django', 'Python', 'Pipenv', 'Docker', 'Nginx', 'Elasticsearch', 'Gunicorn', 'Supervisor', 'test tag']

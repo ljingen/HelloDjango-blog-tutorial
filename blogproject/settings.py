@@ -31,22 +31,35 @@ DEBUG = True
 # 线上环境使用下面配置
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.zmrenwu.com', '81.70.51.41']
 
-# Application definition
+# 使用自定义的User模型...
+AUTH_USER_MODEL = 'users.User'
 
+# 登录后重定位
+LOGIN_REDIRECT_URL = '/blog/'
+LOGOUT_REDIRECT_URL = '/blog/'
+# 自定义认证后台
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'users.backends.EmailBackend',
+)
+
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.auth',  # django 登录校验
+    'django.contrib.contenttypes',  # contenttypes是auth 模块的用户权限处理部分依赖的应用
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 第三方
     'mdeditor',  # markdown后台编辑器
     'pure_pagination',  # 第三方分页'
+    'rest_framework',  # 使用rest_framework
 
     # 自定义
     'blog.apps.BlogConfig',  # 注册blog app
     'comments.apps.CommentsConfig',  # 注册comments app
+    'users.apps.UsersConfig',  # 注册users app
 ]
 
 MIDDLEWARE = [
@@ -116,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # 把英文改为中文
 LANGUAGE_CODE = 'zh-hans'
-
 # 把国际时区改为中国时区（东八区）
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -124,7 +136,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

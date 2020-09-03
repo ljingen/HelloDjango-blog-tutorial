@@ -11,7 +11,7 @@ urlpatterns = [
     # path('tags/<int:pk>/', views.tag, name='tag'),
     # path('archives/<int:year>/<int:month>/', views.archive, name='archive'),
     # path('posts/<int:pk>/', views.detail, name='detail'),
-
+    path('serach/', views.search, name='search'),
 
     # 使用类视图模式
     path('', views.IndexView.as_view(), name='index'),

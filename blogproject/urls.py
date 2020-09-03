@@ -17,13 +17,28 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import TemplateView
+from rest_framework import routers
+
+router = routers.DefaultRouter()
 
 urlpatterns = [
+    path(r'', include('blog.urls')),
     path('admin/', admin.site.urls),
     path(r'blog/', include('blog.urls')),
-    path(r'', include('comments.urls')),
+    path(r'comments/', include('comments.urls')),
+    path(r'users/', include('users.urls')),
+    # 登录，修改密码，找回密码等视图函数使用django自带的
+    path(r'users/', include('django.contrib.auth.urls')),
 
     path(r'mdeditor', include('mdeditor.urls')),
+
+    # api接口
+    path('api/', include(router.urls)),
+    path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # 关于页面
+    path('about/', TemplateView.as_view(template_name='blog/about.html')),
 ]
 
 if settings.DEBUG:
