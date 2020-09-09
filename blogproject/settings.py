@@ -26,11 +26,12 @@ SECRET_KEY = 'lhn!z_^0(+u!ee6($z6l2q81!s8%i3h#%y7%khy795j0mbg2(f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 # ALLOWED_HOSTS = []
 # 线上环境使用下面配置
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.zmrenwu.com', '81.70.51.41']
-
+# ALLOWED_HOSTS = ['*']
 # 使用自定义的User模型...
 AUTH_USER_MODEL = 'users.User'
 
@@ -106,6 +107,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'blogproject',
+#         'USER': 'root',
+#         'PASSWORD': 'qazWSX123~',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
