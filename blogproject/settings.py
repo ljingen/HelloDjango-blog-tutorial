@@ -123,6 +123,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# REST_FRAMEWORK
+# https://www.django-rest-framework.org/tutorial/quickstart/
+REST_FRAMEWORK = {
+    # 设置 DEFAULT_PAGINATION_CLASS 后，将全局启用分页，所有 List 接口的返回结果都会被分页
+    # 如果想单独控制每个接口的分页情况，可不设置这个选项，而是在视图函数中进行配置
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 这个选项控制分页后每页的资源个数
+    'PAGE_SIZE': 20
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -136,7 +145,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

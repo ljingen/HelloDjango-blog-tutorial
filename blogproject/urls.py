@@ -20,7 +20,10 @@ from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
 from rest_framework import routers
 
+from blog.api_views import IndexPostViewSet
+
 router = routers.DefaultRouter()
+router.register('posts', IndexPostViewSet, basename='post')
 
 urlpatterns = [
     path(r'', include('blog.urls')),

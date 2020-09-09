@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from . import views, api_views
 
 # 视图函数命名空间
 app_name = 'blog'
@@ -19,5 +19,8 @@ urlpatterns = [
     path('tags/<int:pk>/', views.TagView.as_view(), name='tag'),
     path('archives/<int:year>/<int:month>/', views.ArchiveView.as_view(), name='archive'),
     path('posts/<int:pk>/', views.PostDetailView.as_view(), name='detail'),
+
+    # api接口
+    path('api/index/', api_views.index_view),
 
 ]

@@ -18,8 +18,8 @@ if __name__ == '__main__':
     django.setup()
 
     from blog.models import Post, Tag, Category
-    from apps.comments.models import Comment
-    from apps.users.models import User
+    from comments.models import Comment
+    from users.models import User
 
     print('++++++++clean database++++++++')
     Post.objects.all().delete()

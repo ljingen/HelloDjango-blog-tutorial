@@ -1,15 +1,15 @@
 from datetime import datetime
 import markdown
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
 from django.utils.html import strip_tags
-from users.models import User
 from mdeditor.fields import MDTextField
 
-
+from users.models import User
 # Create your models here.
 
 
