@@ -20,10 +20,13 @@ from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
 from rest_framework import routers
 
-from blog.api_views import IndexPostViewSet
-
+from blog.api_views import PostViewSet, CategoryViewSet, TagViewSet
+from comments.api_views import CommentViewSet
 router = routers.DefaultRouter()
-router.register('posts', IndexPostViewSet, basename='post')
+router.register('posts', PostViewSet, basename='post')
+router.register('categories', CategoryViewSet, basename='category')
+router.register('tags', TagViewSet, basename='tag')
+router.register('comments', CommentViewSet, basename='comment')
 
 urlpatterns = [
     path(r'', include('blog.urls')),

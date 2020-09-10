@@ -5,6 +5,7 @@ from users.models import User
 
 class TagSeiralizer(serializers.ModelSerializer):
     """标签序列化器"""
+
     class Meta:
         model = Tag
         fields = ["id", "name"]
@@ -12,6 +13,7 @@ class TagSeiralizer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
     """列表序列号器"""
+
     class Meta:
         model = Category
         fields = ['id', 'name']
@@ -43,5 +45,3 @@ class PostRetriveSerializer(serializers.ModelSerializer):
         model = Post
         fields = ["id", "title", "body", "created_time", "modified_time", "excerpt",
                   "click_nums", "category", "author", "tags"]
-
-

@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'mdeditor',  # markdown后台编辑器
     'pure_pagination',  # 第三方分页'
     'rest_framework',  # 使用rest_framework
+    'django_filters',  # django-filter过滤
 
     # 自定义
     'blog.apps.BlogConfig',  # 注册blog app
@@ -203,5 +204,24 @@ MDEDITOR_CONFIGS = {
         'tex': True,  # 是否开启 tex 图表功能
         'flow_chart': True,  # 是否开启流程图功能
         'sequence': True  # 是否开启序列图功能
+    }
+}
+
+# Logger
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
     }
 }

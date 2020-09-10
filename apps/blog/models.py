@@ -6,10 +6,13 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
+from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 from mdeditor.fields import MDTextField
 
 from users.models import User
+
+
 # Create your models here.
 
 
@@ -76,6 +79,7 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        """保存模型实例数据到数据库的会调用该方法"""
         self.modified_time = timezone.now()
         # 首先实例化一个 Markdown 类，用于渲染 body 的文本。
         # 由于摘要并不需要生成文章目录，所以去掉了目录拓展。
@@ -97,3 +101,4 @@ class Post(models.Model):
     def increase_click_nums(self):
         self.click_nums += 1
         self.save(update_fields=['click_nums'])
+
